@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+// 	arr9 = ['1','2','3','4','5','6','7','8','9']
+// 	for(i=0; i<99; i++) {
+// 		var rnd = parseInt(Math.random()*9);
+		
+// 		temp = arr9[0];
+// 		arr9[0] = arr9[rnd];
+// 		arr9[rnd] = temp;
+// 	}
+// 	com = arr9[0] + arr9[1] + arr9[2];
+// 	console.log(com)
+	com = [];
+	
+	function randomCom(){
+		var arr3 = [];
+		var arr9 =  ['1','2','3','4','5','6','7','8','9']
+		
+		for(var i=0; i<3; i++) {
+			var rnd = parseInt(Math.random()*arr9.length)
+			arr3.push(arr9.splice(rnd,1)[0]);
+		}
+		
+		this.com = arr3[0] + arr3[1] + arr3[2]
+	}
+	
+	randomCom();
+	console.log(com)
+	
+	function getStrike(com,mine){
+		var cnt = 0;
+		
+		var c1 = com.substring(0,1);
+		var c2 = com.substring(1,2);
+		var c3 = com.substring(2,3);
+		
+		var m1 = mine.substring(0,1);
+		var m2 = mine.substring(1,2);
+		var m3 = mine.substring(2,3);
+		
+		if(c1 == m1) cnt++;
+		if(c2 == m2) cnt++;
+		if(c3 == m3) cnt++;
+		
+		return cnt;
+		
+	}
+	
+	function getBall(com,mine){
+		var cnt = 0;
+		
+		var c1 = com.substring(0,1);
+		var c2 = com.substring(1,2);
+		var c3 = com.substring(2,3);
+		
+		var m1 = mine.substring(0,1);
+		var m2 = mine.substring(1,2);
+		var m3 = mine.substring(2,3);
+		
+		if(c2 == m1 || c3 == m1) cnt++;
+		if(c1 == m2 || c3 == m2) cnt++;
+		if(c1 == m3 || c2 == m3) cnt++;
+		
+		return cnt;
+		
+	}
+	
+	myclick = function(){
+		var obj_mine = document.getElementById('it')
+		var obj_my_div = document.getElementById('my_div')
+		
+		var mine = obj_mine.value;
+		var str_old = obj_my_div.innerHTML;
+		var str_new = "";
+
+// 		var s = 0;
+// 		var b = 0;
+		
+// 		if(mine[0] == com[0]) s+=1;
+// 		if(mine[1] == com[1]) s+=1;
+// 		if(mine[2] == com[2]) s+=1;
+		
+// 		if(mine[0] == com[1] || mine[0] == com[2]) b+=1;
+// 		if(mine[1] == com[0] || mine[1] == com[2]) b+=1;
+// 		if(mine[2] == com[0] || mine[2] == com[1]) b+=1;
+		var s = getStrike(com,mine);
+		var b = getBall(com,mine);
+		
+		str_new = mine + " ==> " + s + "s " + b + "b<br/>";
+		
+		obj_mine.value = "";
+		obj_my_div.innerHTML = str_old + str_new;
+		
+		if(s == 3) {
+			setTimeout(() => alert(mine + " 정답!!!"), 1);
+// 			alert(mine + " 정답!!!");
+		}
+	}
+}
+
+</script>
+<style type="text/css">
+#it{
+	width: 50px;
+}
+#my_div{
+	height: 200px;
+}
+</style>
+</head>
+<body>
+<table border="1">
+	<tr>
+		<td>야구게임</td>
+		<td>
+			<input type="text" id="it"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="맞추기" onclick="myclick()"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div id="my_div"></div>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

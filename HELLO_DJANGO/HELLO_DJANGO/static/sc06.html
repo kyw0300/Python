@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	myclick = function(){
+		var obj_dan = document.getElementById('it_dan');
+		var obj_div = document.getElementById('my_div');
+		
+		var idan = parseInt(obj_dan.value);
+// 		console.log(dan);
+		
+		result = "구구단을 외자~! " + idan + "단~!<br/>";
+		
+		for(var i=1; i<=9; i++) {
+			result += idan + " × " + i + " = " + (idan*i) + "<br/>"
+		}
+// 		console.log(result)
+		obj_div.innerHTML = result;
+	}
+}
+</script>
+<style type="text/css">
+#it_dan{
+	width: 70px;
+}
+#my_div{
+	width: 200px;
+	height: 220px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<table border="1">
+	<tr>
+		<td>입력단수 : </td>
+		<td>
+			<input type="text" id="it_dan">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="출력하기" onclick="myclick()">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div id="my_div">__</div>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	myclick = function(){
+		var objs = document.getElementsByClassName('my_div');
+		console.log(objs);
+		
+		objs[0].innerHTML = "Good Evening";
+	}
+}
+</script>
+</head>
+<body>
+<div class="my_div">Good Morning</div>
+<input type="button" value="CLICK" onclick="myclick()">
+</body>
+</html>

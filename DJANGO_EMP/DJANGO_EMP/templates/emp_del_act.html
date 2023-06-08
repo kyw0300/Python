@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+td{width: 50px; text-align: center;}
+td:hover{background: lightgreen}
+</style>
+
+<script type="text/javascript">
+var cnt = "{{cnt}}";
+	if(cnt == "1") {
+		alert("정상적으로 삭제되었습니다.");
+		window.location.href = "emp_list";
+	} else {
+		alert("삭제에 실패하였습니다!");
+		window.history.back();
+	}
+</script>
+
+</head>
+<body>
+<h1>EMP_DEL_ACT</h1>
+
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="jquery-3.6.4.js"></script>
+<script type="text/javascript">
+function fn_ajax() {
+	var param = {
+			menu : '짜장면'
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "/ajax",
+// 		data: {menu: '짬뽕'},
+		data:JSON.stringify(param),
+		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+		success : function(res) {
+// 			console.log(res);
+			$("#menu").text(res.menu);
+		},
+		dataType : "json"
+	});
+}
+
+function fn_list(){
+	$.ajax({
+		type : "POST",
+		url : "/ajax_emp_list",
+		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+		success : function(res) {
+			var obj_tbody = document.querySelector("#my_tbody");
+			var list = res.list;
+			
+			var txt = "";
+			
+			for(var i=0; i<list.length; i++) {
+				var e = list[i];
+				var e_id = e.e_id;
+				var e_name = e.e_name;
+				var sex = e.sex;
+				var addr = e.addr;
+				
+				txt += `
+				<tr>
+					<td><a href="javascript: fn_detail('${e_id}')">${e_id}</a></td>
+					<td>${e_name}</td>
+					<td>${sex}</td>
+					<td>${addr}</td>
+				</tr>
+				`;
+			}
+// 			console.log(txt);
+			
+			obj_tbody.innerHTML = txt;
+			
+// 			jquery 형식
+// 			result = "";
+// 			$.each(res.list,function(i,v){
+// 				result += "<tr>";
+// 				result += "<td>" + v.e_id + "</td>";
+// 				result += "<td>" + v.e_name + "</td>";
+// 				result += "<td>" + v.sex + "</td>";
+// 				result += "<td>" + v.addr + "</td>";
+// 				result += "</tr>";
+// 			})
+			
+// 			$('#my_tbody').html(result);
+		},
+		dataType : "json"
+	});
+}
+
+function fn_detail(e_id){
+	
+	var param = {
+			e_id : e_id
+	}	
+	
+	$.ajax({
+		type : "POST",
+		url : "/ajax_emp_detail",
+		data:JSON.stringify(param),
+		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+		success : function(res) {
+			var vo = res.vo;
+			
+			document.querySelector("#e_id").value = vo.e_id;
+			document.querySelector("#e_name").value = vo.e_name;
+			document.querySelector("#sex").value = vo.sex;
+			document.querySelector("#addr").value = vo.addr;
+		},
+		dataType : "json"
+	});
+}
+
+function fn_mod(){
+	var obj_e_id = document.querySelector("#e_id");
+	var obj_e_name = document.querySelector("#e_name");
+	var obj_sex = document.querySelector("#sex");
+	var obj_addr = document.querySelector("#addr");
+	
+	var param = {
+			e_id: obj_e_id.value,
+			e_name: obj_e_name.value,
+			sex: obj_sex.value,
+			addr: obj_addr.value
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "/ajax_emp_update",
+		data:JSON.stringify(param),
+		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+		success : function(res) {
+			var cnt = res.cnt;
+			
+			if(cnt == 1) {
+				alert("수정 성공!");
+				fn_list();
+			} else {
+				alert("수정 실패!");
+			}
+			
+			document.querySelector("#e_id").value = "";
+			document.querySelector("#e_name").value = "";
+			document.querySelector("#sex").value = "";
+			document.querySelector("#addr").value = "";
+			
+		},
+		dataType : "json"
+	});
+}
+
+function fn_add(){
+	var obj_e_id = document.querySelector("#e_id");
+	var obj_e_name = document.querySelector("#e_name");
+	var obj_sex = document.querySelector("#sex");
+	var obj_addr = document.querySelector("#addr");
+	
+	var param = {
+			e_id: obj_e_id.value,
+			e_name: obj_e_name.value,
+			sex: obj_sex.value,
+			addr: obj_addr.value
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "/ajax_emp_insert",
+		data:JSON.stringify(param),
+		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+		success : function(res) {
+			var cnt = res.cnt;
+			
+			if(cnt == 1) {
+				alert("추가 성공!");
+				fn_list();
+			} else {
+				alert("추가 실패!");
+			}
+			
+			document.querySelector("#e_id").value = "";
+			document.querySelector("#e_name").value = "";
+			document.querySelector("#sex").value = "";
+			document.querySelector("#addr").value = "";
+			
+		},
+		dataType : "json"
+	});
+}
+
+function fn_del(){
+	var obj_e_id = $("#e_id");
+	
+	var param = {
+			e_id: obj_e_id.val(),
+	}
+	
+	$.ajax({
+		type : "POST",
+		url : "/ajax_emp_delete",
+		data:JSON.stringify(param),
+		contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+		success : function(res) {
+			var cnt = res.cnt;
+			
+			if(cnt == 1) {
+				alert("삭제 성공!");
+				fn_list();
+			} else {
+				alert("삭제 실패!");
+			}
+			
+			$("#e_id").val("");
+			$("#e_name").val("");
+			$("#sex").val("");
+			$("#addr").val("");
+			
+		},
+		dataType : "json"
+	});
+}
+</script>
+<title>DJANGO AJAX</title>
+</head>
+<body onload="fn_list()">
+<a href="javascript:fn_ajax()">ajax</a>
+<p id="menu"></p>
+<table border="1">
+	<thead>
+		<tr>
+			<td>사번</td>
+			<td>이름</td>
+			<td>성별</td>
+			<td>주소</td>
+		</tr>
+	</thead>
+	<tbody id="my_tbody">
+		<tr>
+			<td colspan="4">
+				검색된 데이터가 없습니다.
+			</td>
+		</tr>	
+	</tbody>
+</table>
+<br/>
+<table border="1">
+	<tr>
+		<td>사번</td>
+		<td>
+			<input type="text" id="e_id">
+		</td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td>
+			<input type="text" id="e_name">
+		</td>
+	</tr>
+	<tr>
+		<td>성별</td>
+		<td>
+			<input type="text" id="sex">
+		</td>
+	</tr>
+	<tr>
+		<td>주소</td>
+		<td>
+			<input type="text" id="addr">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="추가" onclick="fn_add()">
+			<input type="button" value="수정" onclick="fn_mod()">
+			<input type="button" value="삭제" onclick="fn_del()">
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

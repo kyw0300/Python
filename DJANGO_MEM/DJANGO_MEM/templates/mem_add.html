@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+td{width: 50px; text-align: center;}
+td:hover{background: lightgreen}
+</style>
+
+<script type="text/javascript">
+function fn_add_act(){
+// 	window.location.href = "emp_mod_act?vo"
+	document.frm.submit();
+}
+</script>
+
+</head>
+<body>
+<h1>MEM_ADD</h1>
+
+<form action="mem_add_act" method="post" name="frm">
+<table border="1">
+	<tr>
+		<td>아이디</td>
+		<td><input type="text" name="m_id"/></td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td><input type="text" name="m_name"/></td>
+	</tr>
+	<tr>
+		<td>전화번호</td>
+		<td><input type="text" name="tel"/></td>
+	</tr>
+	<tr>
+		<td>주소</td>
+		<td><input type="text" name="address"/></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="확인" onclick="fn_add_act()"/>
+		</td>
+	</tr>
+</table>
+</form>
+
+</body>
+</html>

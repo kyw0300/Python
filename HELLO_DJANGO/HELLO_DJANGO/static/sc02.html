@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	myclick = function(){
+// 		var val = document.getElementById('my_it').value;
+		var val = document.querySelector('#my_it').value;
+// 		console.log(val);
+		
+		val *= 2
+// 		console.log(val);
+		
+		document.getElementById('my_it').value = val;
+	}
+}
+</script>
+</head>
+<body>
+<input type="text" id="my_it" value="2">
+<input type="button" value="Double" onclick="myclick()">
+</body>
+</html>

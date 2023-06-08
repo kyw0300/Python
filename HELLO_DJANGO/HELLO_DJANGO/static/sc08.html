@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	myclick = function(obj){
+		var first = document.querySelector('#it_first').value
+		var last = document.querySelector('#it_last').value
+		var ta = document.querySelector('#ta') 
+// 		console.log(first)
+		
+		star = ""
+		
+		for(var i=first; i<=last; i++) {
+// 			for(var j=1; j<=i; j++) {
+// 				star += `*`;
+// 			}
+// 			star += `\n`
+			star += getStar(i);
+		}
+// 		console.log(star)
+// 		ta.innerHTML = star;
+		ta.value = star;
+	}
+	
+	getStar = function(cnt){
+		var ret = "";
+		for(var i=0; i<cnt; i++) {
+			ret += "*";
+		}
+		ret += "\n";
+		return ret;
+	}
+	
+	
+// 	document.querySelectorAll('input[type = button]').onclick = function(event) {
+// 		console.log(event.value);
+// 	}
+}
+</script>
+<style type="text/css">
+#it_first,#it_last{
+	text-align: right;
+	width: 20px;
+}
+</style>
+</head>
+<body>
+
+<table border="1">
+	<tr>
+		<td>첫별수</td>
+		<td><input type="text" id="it_first"></td>
+	</tr>
+	<tr>
+		<td>끝별수</td>
+		<td><input type="text" id="it_last"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="출력하기" onclick="myclick()">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea rows="20" cols="20" id="ta"></textarea>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

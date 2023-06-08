@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.6.4.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	myclick = function(obj){
+		var first = $('#it_first').val();
+		var last = $('#it_last').val();
+		var ta = $('#ta');
+		
+		star = ""
+		
+		for(var i=first; i<=last; i++) {
+			star += getStar(i);
+		}
+		ta.val(star);
+	}
+	
+	getStar = function(cnt){
+		var ret = "";
+		for(var i=0; i<cnt; i++) {
+			ret += "*";
+		}
+		ret += "\n";
+		return ret;
+	}
+}
+
+$(document).ready(function(){
+	$('#print').bind('click',function(event){
+		myclick(this);
+	})
+})
+</script>
+<style type="text/css">
+#it_first,#it_last{
+	text-align: right;
+	width: 20px;
+}
+</style>
+</head>
+<body>
+
+<table border="1">
+	<tr>
+		<td>첫별수</td>
+		<td><input type="text" id="it_first"></td>
+	</tr>
+	<tr>
+		<td>끝별수</td>
+		<td><input type="text" id="it_last"></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="출력하기" id="print">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<textarea rows="20" cols="20" id="ta"></textarea>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

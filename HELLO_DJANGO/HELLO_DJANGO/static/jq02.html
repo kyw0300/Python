@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.6.4.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').bind('click',function(){
+		var val = $('#my_it').val();
+		val *= 2
+		$('#my_it').val(val);
+	})
+})
+
+</script>
+</head>
+<body>
+<input type="text" id="my_it" value="2">
+<input type="button" value="Double" id="btn">
+</body>
+</html>

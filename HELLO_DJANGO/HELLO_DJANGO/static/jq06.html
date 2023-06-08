@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.6.4.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	myclick = function(){
+		var obj_dan = $('#it_dan');
+		var obj_div = $('#my_div');
+		
+		var idan = parseInt(obj_dan.val());
+		
+		result = "구구단을 외자~! " + idan + "단~!<br/>";
+		
+		for(var i=1; i<=9; i++) {
+			result += idan + " × " + i + " = " + (idan*i) + "<br/>"
+		}
+		obj_div.html(result);
+	}
+	
+	$('#gugudan').bind('click',myclick)
+	
+	$("#it_dan").bind("keypress",function(event){
+        if(event.key == 'Enter') {
+            myclick();
+        }
+    });
+	
+})
+</script>
+<style type="text/css">
+#it_dan{
+	width: 70px;
+}
+#my_div{
+	width: 200px;
+	height: 220px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+<table border="1">
+	<tr>
+		<td>입력단수 : </td>
+		<td>
+			<input type="text" id="it_dan">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="출력하기" id="gugudan">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div id="my_div">__</div>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

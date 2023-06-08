@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	myclick = function(obj){
+		var obj_it = document.getElementById('it')
+		
+		var str_new = obj.value
+		var str_old = obj_it.value
+		
+		str_old += str_new;
+		
+		obj_it.value = str_old;
+	}
+	
+	mycall = function(){
+		var callNum = document.getElementById('it').value;
+		alert("Calling...\n" + callNum)
+	}
+	
+// 	document.querySelector('input[type=button]').addEventListener("click", function(event) {
+// 		console.log(event.target.value);
+// // 		  alert(this.textContent);
+// 	});
+	
+// 	document.querySelectorAll('input[type="button"]').forEach(function(i) {
+// 		 i.addEventListener('click', function() {
+// 		 	 console.log(this.value); // 클릭한 버튼의 id 값 출력
+// 		 });
+// 	});
+}
+
+</script>
+<style type="text/css">
+#it_dan{
+	width: 70px;
+}
+#my_div{
+	width: 200px;
+	height: 220px;
+	text-align: center;
+}
+#it{
+	text-align: right;
+}
+</style>
+</head>
+<body>
+
+<table border="1">
+	<tr>
+		<td colspan="3">
+			<input type="text" id="it">
+		</td>
+	</tr>
+	<tr>
+		<td><input type="button" value="1" ></td>
+		<td><input type="button" value="2" ></td>
+		<td><input type="button" value="3" onclick="myclick(this)"></td>
+	</tr>
+	<tr>
+		<td><input type="button" value="4" onclick="myclick(this)"></td>
+		<td><input type="button" value="5" onclick="myclick(this)"></td>
+		<td><input type="button" value="6" onclick="myclick(this)"></td>
+	</tr>
+	<tr>
+		<td><input type="button" value="7" onclick="myclick(this)"></td>
+		<td><input type="button" value="8" onclick="myclick(this)"></td>
+		<td><input type="button" value="9" onclick="myclick(this)"></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="button" value="0" onclick="myclick(this)"></td>
+		<td><input type="button" value="call" onclick="mycall()"></td>
+	</tr>
+</table>
+
+</body>
+</html>

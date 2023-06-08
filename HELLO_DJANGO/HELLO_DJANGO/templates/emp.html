@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+td{width: 50px; text-align: center;}
+td:hover, th:hover{color: blue; background: lightgreen}
+</style>
+</head>
+<body>
+EMP<br/><br/>
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>사번</th>
+			<th>이름</th>
+			<th>성별</th>
+			<th>주소</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for i in list %}
+		<tr>
+			<td>{{i.e_id}}</td>
+			<td>{{i.e_name}}</td>
+			<td>{{i.sex}}</td>
+			<td>{{i.addr}}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+</body>
+</html>
